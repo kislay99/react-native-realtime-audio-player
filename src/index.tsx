@@ -18,10 +18,6 @@ const RealtimeAudioPlayer = NativeModules.RealtimeAudioPlayer
       }
     );
 
-// export function multiply(a: number, b: number): Promise<number> {
-//   return RealtimeAudioPlayer.multiply(a, b);
-// }
-
 export function initialize(
   bufferByteSize: number,
   sampleRate: number,
