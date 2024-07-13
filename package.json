@@ -178,5 +178,11 @@
     "type": "module-legacy",
     "languages": "kotlin-swift",
     "version": "0.38.2"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3"
+  },
+  "directories": {
+    "example": "example"
   }
 }

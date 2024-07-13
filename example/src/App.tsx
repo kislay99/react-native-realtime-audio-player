@@ -1,17 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-realtime-audio-player';
+import { initialize, playAudioData } from 'react-native-realtime-audio-player';
 
 export default function App() {
-  const [result, setResult] = useState<number | undefined>();
+  const audioOutputWs = useRef<WebSocket | null>(null);
 
+  const handleAudioOutput = async (event: any) => {
+    playAudioData(event.data);
+  };
+
+  // let's configure the web socket
   useEffect(() => {
-    multiply(3, 7).then(setResult);
+    initialize(8192, 24000, 1);
+
+    audioOutputWs.current = new WebSocket(
+      `ws://192.168.29.189:8000/audio_output/testclient`
+    );
+    audioOutputWs.current.onopen = () => console.log('Audio output ws open');
+    audioOutputWs.current.binaryType = 'arraybuffer';
+    audioOutputWs.current.onmessage = handleAudioOutput;
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>This is a sample IOS app</Text>
     </View>
   );
 }
