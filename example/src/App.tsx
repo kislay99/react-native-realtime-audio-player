@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     initialize(8192, 24000, 1);
 
-    audioOutputWs.current = new WebSocket(`ws://your_web_socket`);
+    audioOutputWs.current = new WebSocket('ws://example.com') as WebSocket;
     audioOutputWs.current.onopen = () => console.log('Audio output ws open');
     audioOutputWs.current.binaryType = 'arraybuffer';
     audioOutputWs.current.onmessage = handleAudioOutput;
