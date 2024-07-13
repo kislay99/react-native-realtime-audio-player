@@ -12,11 +12,11 @@ npm install react-native-realtime-audio-player
 
 
 ```js
-import { multiply } from 'react-native-realtime-audio-player';
+import { initialize, playAudioData } from 'react-native-realtime-audio-player';
 
 // ...
-
-const result = await multiply(3, 7);
+initialize(BYTE_SIZE, SAMPLE_RATE, CHANNELS);
+const result = await playAudioData(event.data);
 ```
 
 
