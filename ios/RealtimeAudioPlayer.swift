@@ -41,15 +41,15 @@ struct CircularBuffer {
     }
 }
 
-@objc(AudioPlayer)
-class AudioPlayer: NSObject {
+@objc(RealtimeAudioPlayer)
+class RealtimeAudioPlayer: NSObject {
     private var audioQueue: AudioQueueRef?
     private var buffer: CircularBuffer
     private var bufferByteSize: UInt32
     private var initialized: Bool
   
     static func moduleName() -> String! {
-        return "AudioPlayer"
+        return "RealtimeAudioPlayer"
     }
     
     override init() {
@@ -96,7 +96,7 @@ class AudioPlayer: NSObject {
 
     private let audioQueueCallback: AudioQueueOutputCallback = { (userData, queue, bufferRef) in
         guard let userData = userData else { return }
-        let player: AudioPlayer = Unmanaged<AudioPlayer>.fromOpaque(userData).takeUnretainedValue()
+        let player: RealtimeAudioPlayer = Unmanaged<RealtimeAudioPlayer>.fromOpaque(userData).takeUnretainedValue()
         if player.audioQueue == nil {
             return // Audio queue has been stopped, do nothing
         }
