@@ -61,6 +61,7 @@ class RealtimeAudioPlayer: NSObject {
   
     @objc(initialize:sampleRate:channels:)
     func initialize(bufferByteSize: UInt32, sampleRate: Double, channels: UInt32) {
+        deinitialize()
         self.initialized = true
         self.bufferByteSize = bufferByteSize
         self.buffer = CircularBuffer(capacity: Int(bufferByteSize * 1000))
